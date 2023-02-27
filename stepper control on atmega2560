@@ -1,0 +1,28 @@
+#define F_CPU 16000000
+
+#include <avr/io.h>
+#include <util/delay.h>
+
+// direction controlled at register 6, pulse controlled at register 7
+int direction_register = 5;
+int pulse_register = 7;
+
+int stepper_controller(int direction) {
+  //set port b13, 12 as output
+    DDRB |= 0xFF;
+
+      while(1) {
+        PORTB = 10000000;
+        _delay_ms(.5);
+        PORTB = 00000000;
+        _delay_ms(.5);
+      }
+  return 0;
+}
+
+int main (void)
+{
+  // call the stepper_controller function
+  stepper_controller(1);
+  return 0;
+}
